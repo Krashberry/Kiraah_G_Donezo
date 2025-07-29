@@ -37,6 +37,26 @@ export default function Login() {
     }
   };
 
+  function loginAlert({ alert, showAlert }) {
+    return (
+      <>
+        {alert.show && (
+          <div className="alert alert-error">
+            <div className="inline-flex justify-stretch items-center">
+              {alert.message}
+              <button
+                onClick={() => showAlert({ message: '', show: false })}
+                className="btn btn-ghost btn-circle"
+              >
+                X
+              </button>
+            </div>
+          </div>
+        )}
+      </>
+    );
+  }
+
   return (
     <div className="bg-gray-100 flex items-center justify-center min-h-screen">
       <div className="max-w-md w-full bg-white p-6 rounded-lg shadow-md">
@@ -52,24 +72,42 @@ export default function Login() {
       </div>
     </div>
   );
-}
 
-function loginAlert({ alert, showAlert }) {
-  return (
-    <>
-      {alert.show && (
-        <div className="alert alert-error">
-          <div className="inline-flex justify-stretch items-center">
-            {alert.message}
-            <button
-              onClick={() => showAlert({ message: '', show: false })}
-              className="btn btn-ghost btn-circle"
-            >
-              X
-            </button>
-          </div>
+  function LoginForm() {
+    return (
+      <form className="space-y-4" onSubmit={handleSubmit(loginUser)}>
+        <div>
+          <label
+            htmlFor="email"
+            className="block text-sm font-medium text-gray-700"
+          >
+            Email
+          </label>
+          <input
+            id="email"
+            type="email"
+            className="input input-bordered w-full"
+            {...register('email')}
+          />
         </div>
-      )}
-    </>
-  );
+        <div>
+          <label
+            htmlFor="password"
+            className="block text-sm font-medium text-gray-700"
+          >
+            Password
+          </label>
+          <input
+            id="password"
+            type="password"
+            className="input input-bordered w-full"
+            {...register('password')}
+          />
+        </div>
+        <button type="submit" className="btn btn-primary w-full">
+          Login
+        </button>
+      </form>
+    );
+  }
 }
