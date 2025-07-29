@@ -1,6 +1,7 @@
 import express from 'express';
-const router = express.Router();
 import prisma from '../db/index.js';
+
+const router = express.Router();
 
 router.get('/', async (req, res) => {
   // Gets all the todos from the database
@@ -15,13 +16,12 @@ router.get('/', async (req, res) => {
 // Define a POST route for creating a new todo
 router.post('/', async (req, res) => {
   // Destructure `name` and `description` from the request body
-  const { name, description } = req.body;
+  const { name } = req.body;
   try {
     // Use Prisma to create a new todo entry in the database
     const newTodo = await prisma.todo.create({
       data: {
         name, // Set the name of the todo from the request
-        description, // Set the description of the todo from the request
         completed: false, // Default value for `completed` is set to false
         userId: req.user.sub, // Assign the user ID
       },
@@ -64,7 +64,8 @@ router.put('/:todoId/completed', async (req, res) => {
         id: todoId, // Match the todo based on its unique ID
       },
       data: {
-        completed: true, // Update the `completed` field to `true`
+        // Change the task to compelted
+        completed: true,
       },
     });
 
@@ -91,10 +92,12 @@ router.delete('/:todoId', async (req, res) => {
     // Use Prisma to delete the todo with the specified ID
     await prisma.todo.delete({
       where: {
-        id: todoId, // Match the todo based on its unique ID
+        id: todoId,
+        // Match the todo based on its unique ID
       },
       data: {
         completed: true,
+        // Check that the todo is completed
       },
     });
 
