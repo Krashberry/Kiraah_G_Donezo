@@ -37,7 +37,7 @@ export default function Login() {
     }
   };
 
-  function loginAlert({ alert, showAlert }) {
+  function LoginAlert() {
     return (
       <>
         {alert.show && (
@@ -56,22 +56,6 @@ export default function Login() {
       </>
     );
   }
-
-  return (
-    <div className="bg-gray-100 flex items-center justify-center min-h-screen">
-      <div className="max-w-md w-full bg-white p-6 rounded-lg shadow-md">
-        <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
-        <LoginAlert />
-        <LoginForm />
-        <p className="mt-4 text-center text-sm">
-          Don't have an account?
-          <Link to="/signup" className="text-blue-500 hover:underline">
-            Sign up
-          </Link>
-        </p>
-      </div>
-    </div>
-  );
 
   function LoginForm() {
     return (
@@ -110,4 +94,20 @@ export default function Login() {
       </form>
     );
   }
+
+  return (
+    <div className="bg-gray-100 flex items-center justify-center min-h-screen">
+      <div className="max-w-md w-full bg-white p-6 rounded-lg shadow-md">
+        <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
+        <LoginAlert />
+        <LoginForm />
+        <p className="mt-4 text-center text-sm">
+          Dont have an account?
+          <Link to="/signup" className="text-blue-500 hover:underline">
+            Sign Up
+          </Link>
+        </p>
+      </div>
+    </div>
+  );
 }
