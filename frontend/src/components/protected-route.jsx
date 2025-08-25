@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import supabase from '../client';
 
 export default function ProtectedRoute({ children }) {
@@ -32,3 +33,8 @@ export default function ProtectedRoute({ children }) {
     return <>{session ? children : <Navigate to="/login" />}</>;
   }
 }
+
+// Add PropTypes validation
+ProtectedRoute.propTypes = {
+  children: PropTypes.node.isRequired,
+};

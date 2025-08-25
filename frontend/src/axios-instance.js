@@ -1,6 +1,6 @@
 import axios from 'axios';
 import supabase from './client';
-import { useMutation } from '@tanstack/react-query';
+// import { useMutation } from '@tanstack/react-query';
 
 const getAxiosClient = async () => {
   // Get the supabase session
